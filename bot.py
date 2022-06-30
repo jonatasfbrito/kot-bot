@@ -1,6 +1,8 @@
 import telebot
 import json
 import pprint
+import functions
+from functions import funcoes
 import requests
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -30,5 +32,12 @@ def start(message):
 	markup.add(admin)
 	markup.add(src)
 	bot.reply_to(message, boas, reply_markup=markup)
+
+@bot.message_handler(commands=['gerar'])
+def gerar(message):
+	arg = message.text
+	arg1 = arg.split()[1]	
+	res = funcoes.numero_extenso(arg1)
+	bot.reply_to(message, res)
 
 bot.infinity_polling()
