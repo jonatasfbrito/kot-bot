@@ -1,5 +1,6 @@
 # Kotzin Bot
-- Um bot criado com intuito de ajudar com suas ferramentas a um grupo.
+- Um bot criado com intuito de ajudar com suas ferramentas a um grupo, desenvolvido totalmente em Python.
+
 
 # Funções 
 - Cria mensagems auto-destrutivas;
@@ -8,6 +9,7 @@
 
 # Versão Atual
 - 0.0.2
+- Python 3.9.2
 
 # Quer entrar em contato, ajudar no desenvolvimento ou doar?
 
