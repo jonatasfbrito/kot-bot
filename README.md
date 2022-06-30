@@ -16,3 +16,6 @@
 - Pix: 85 96097475
 - Telegram: @KotzeraUnix
 - Discord: Kot#4075
+
+# Em breve 0.0.3
+- Funções adminstrativas.
