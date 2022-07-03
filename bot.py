@@ -1,25 +1,28 @@
 import telebot
 import json
-import pprint
-import functions
-from functions import funcoes
+import funcoes
 import requests
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 boas = open("./textos/boasvindas.txt").read()
 tokenbot = open("./config/token.txt").read()
 
-bot = telebot.TeleBot(tokenbot)
+bot = telebot.TeleBot(tokenbot, parse_mode="MARKDOWN")
 
 @bot.callback_query_handler(func=lambda call: True)
 def test_callback(call):
+	c_id = call.message.chat.id
+	mid = call.message.message_id
+	rtm = call.message.reply_to_message.message_id
 	if call.data == "livros":
-		c_id = call.message.chat.id
-		mid = call.message.message_id
 		mrk = InlineKeyboardMarkup()
 		down = InlineKeyboardButton("DOWNLOAD",callback_data="download")
 		mrk.add(down)
 		bot.edit_message_text("Lista de livros didáticos",c_id,mid,reply_markup=mrk)
+	if call.data == "apg":
+		print(call)
+		bot.delete_message(chat_id=c_id,message_id=mid)
+		bot.delete_message(chat_id=c_id, message_id=rtm)
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -33,11 +36,17 @@ def start(message):
 	markup.add(src)
 	bot.reply_to(message, boas, reply_markup=markup)
 
-@bot.message_handler(commands=['gerar'])
+@bot.message_handler(commands=['mensagem'])
 def gerar(message):
 	arg = message.text
-	arg1 = arg.split()[1]	
-	res = funcoes.numero_extenso(arg1)
-	bot.reply_to(message, res)
+	try:
+		arg1 = arg.split('/mensagem')[1]
+		res = funcoes.Funcoes.mensagem_autodestrutiva(arg1)
+		linha = InlineKeyboardMarkup()
+		apg = InlineKeyboardButton("Apagar",callback_data='apg')
+		linha.add(apg)
+		bot.reply_to(message, res, reply_markup=linha)
+	except:
+		bot.reply_to(message, "*Ocorreu um erro ao criar a mensagem.*\n_Possível causa: Voce não colocou a mensagem após o comando '/mensagem'._")
 
 bot.infinity_polling()
