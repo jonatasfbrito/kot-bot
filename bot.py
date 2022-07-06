@@ -6,6 +6,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 boas = open("./textos/boasvindas.txt").read()
 tokenbot = open("./config/token.txt").read()
+txt_cmds = open("./textos/cmds.txt").read()
 
 bot = telebot.TeleBot(tokenbot, parse_mode="MARKDOWN")
 
@@ -23,18 +24,36 @@ def test_callback(call):
 		print(call)
 		bot.delete_message(chat_id=c_id,message_id=mid)
 		bot.delete_message(chat_id=c_id, message_id=rtm)
+	if call.data == "comandos":
+		mrk = InlineKeyboardMarkup()
+		back = InlineKeyboardButton("Voltar",callback_data="voltar1")
+		mrk.add(back)
+		bot.edit_message_text(txt_cmds,c_id,mid, reply_markup=mrk)
+
+
+@bot.message_handler(commands=['extenso'])
+def extenso(message):
+	arg = message.text
+	try:
+		arg1 = arg.split('/extenso')[1]
+		ex = funcoes.Funcoes.numero_extenso(arg1)
+		bot.reply_to(message, ex.upper())
+	except:
+		bot.reply_to(message, "*Ocorreu um erro...*")
+
 
 @bot.message_handler(commands=['start'])
 def start(message):
 	markup = InlineKeyboardMarkup()
 	livros = InlineKeyboardButton("Livros - PDF",callback_data="livros")
-	contato = InlineKeyboardButton("Grupo", url="t.me/grupo")
+	cmds = InlineKeyboardButton("Comandos - Bot", callback_data="comandos")
 	admin = InlineKeyboardButton("Desenvolvedor",url="t.me/kotzeraunix")
 	src = InlineKeyboardButton("Source Code - Github",url="https://github.com/jonatasfbrito")
-	markup.add(livros,contato)
+	markup.add(livros,cmds)
 	markup.add(admin)
 	markup.add(src)
 	bot.reply_to(message, boas, reply_markup=markup)
+
 
 @bot.message_handler(commands=['mensagem'])
 def gerar(message):

@@ -1,5 +1,7 @@
 *Seja bem vindo(a), colega! 😁️*
 
-*-> Este bot foi desenvolvido com muito carinho pelo estudante da escola EEFM Maria Porfírio Conceição Teles com o intuito de ajudar, tirar dúvidas, fornecer os livros didáticos em PDF e etc.*
+*- Este bot foi desenvolvido com muito carinho pelo estudante da escola Conceição Teles com o intuito de ajudar, tirar dúvidas, fornecer os livros didáticos em PDF e etc.*
 
-_Caso tenha dúvidas sobre o uso, ou qualquer outra coisa, entre em contato com o desenvoveldor._
+_Caso tenha dúvidas sobre o uso, ou qualquer outra coisa, entre em contato com o desenvolvedor._
+
+! - Para ver meus comandos disponíveis, aperte no botão "Comandos - Bot" abaixo! :D

@@ -27,7 +27,12 @@ Obs: Caso não lida, a mensagem se autodestruirá em 24 horas.
 		url = "https://www.invertexto.com/ajax/numeros-por-extenso.php"
 		post = {"numero":f"{num}"}
 		res = requests.post(url, data=post).text
-		return res
+		txt = f"""
+*Número:* {num}
+
+*Extenso:* {res}
+		"""
+		return txt
 
 
 
