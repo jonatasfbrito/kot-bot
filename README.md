@@ -14,8 +14,7 @@
 # Quer entrar em contato, ajudar no desenvolvimento, dar sugestões ou  doar?
 
 - Pix: 1f1957a9-5b89-40de-a90c-4c782faee7af (Nubank)
-- Telegram: @KotzeraUnix
-- Discord: Kot#4075
+- Telegram: @KotLinux
 
 # Em breve 0.0.5
 - Novas funções serão adicionadas.
